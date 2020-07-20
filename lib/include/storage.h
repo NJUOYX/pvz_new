@@ -1,8 +1,7 @@
 #ifndef __LIB_STORAGE__
 #define __LIB_STORAGE__
 #include"common.h"
-#include<stdlib.h>
-#include<stdio.h>
+
 
 #define SCREEN_WIDTH 480 
 #define SCREEN_HIGHT 240
@@ -21,17 +20,36 @@ struct PIC_OBJ{
     uint16_t end_x;
     uint16_t end_y;
     uint16_t speed;
+    uint8_t start;
+    uint8_t show;
+    uint8_t v;
+    uint16_t cur_x;
+    uint16_t cur_y;
 };
 
 typedef struct PIC_OBJ PIC_OBJ;
 
-uint8_t screen[SCREEN_SIZE];
+extern uint8_t screen[SCREEN_SIZE];
 
-PIC_OBJ objs[OBJ_UNION_MAX_SIZE];
+extern PIC_OBJ objs[OBJ_UNION_MAX_SIZE];
 
-void init(FILE* init_const_file);
+typedef int OBJ_ID;
 
+void init(const char* init_filename);
 
+OBJ_ID create_obj(const char* obj_pic_filename);
 
+int del_obj(OBJ_ID o_id);
 
+int insert_obj(OBJ_ID o_id,uint16_t start_x,uint16_t start_y,uint16_t end_x,uint16_t end_y,uint16_t speed);
+
+int show_obj(OBJ_ID o_id);
+
+int hide_obj(OBJ_ID o_id);
+
+int start_obj(OBJ_ID o_id);
+
+OBJ_ID alloc_obj();
+
+int check_obj_id(OBJ_ID o_id);
 #endif//__LIB_STORAGE__

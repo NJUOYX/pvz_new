@@ -1,9 +1,10 @@
 #ifndef __LIB_COMMON__
 #define __LIB_COMMON__
-
-typedef uint8_t unsigned char;
-typedef uint16_t unsigned short;
-typedef uint32_t unsigned int;
+#include<stdlib.h>
+#include<stdio.h>
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
 
 
 #endif//__LIB_COMMON__
