@@ -5,41 +5,15 @@
 #include "creator.h"
 #include "object.h"
 #include <list>
+#include<iostream>
 class Manager : public Plant_manager, Zombie_manager, Creator
 {
 public:
     Manager() = default;
-    int exec()
-    {
-        begin = 1;
-        std::list<std::list<Object *>::iterator> wait_del;
-        while (begin)
-        {
-            for (auto i = obj_ptrs.begin(); i != obj_ptrs.end(); ++i)
-            {
-                auto j = *i;
-
-                if ((*i)->del_me())
-                    wait_del.push_back(i);
-                else
-                    (*i)->start();
-            }
-            for(auto i : wait_del)
-                obj_ptrs.erase(i);
-            wait_del.clear();
-            for(auto i: obj_ptrs_wait_to_add)
-                obj_ptrs.push_back(i);
-            obj_ptrs_wait_to_add.clear();
-        }
-    }
-    int create_obj(OBJ_TYPE o_t, Position pos) override
-    {
-        auto new_obj = get_obj_type(o_t);
-        new_obj->set_pos(pos);
-        obj_ptrs_wait_to_add.push_back(new_obj);
-        return 0;
-    }
-
+    int exec();
+    int create_obj(OBJ_TYPE o_t, Position pos) override;
+    int image(Position pos,OBJ_TYPE o_t,ACTION_TYPE a_t);
+    Object* get_target(Object*sender);
 private:
     Object*get_obj_type(OBJ_TYPE o_t);
 private:
