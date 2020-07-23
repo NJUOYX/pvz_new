@@ -20,9 +20,9 @@ struct PIC_OBJ{
     uint16_t end_x;
     uint16_t end_y;
     uint16_t speed;
-    uint8_t start;
-    uint8_t show;
-    uint8_t v;
+    uint16_t start;
+    uint16_t show;
+    uint16_t v;
     uint16_t cur_x;
     uint16_t cur_y;
 };
