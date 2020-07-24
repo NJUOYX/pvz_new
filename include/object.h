@@ -1,10 +1,15 @@
 #include "common.h"
 
+struct Effect
+{
+    
+};
+
 class Object
 {
 public:
     Object();
-    Object(Position pos):pos(pos){}
+    Object(Position pos) : pos(pos) {}
     void set_pos(Position pos)
     {
         this->pos = pos;
@@ -15,18 +20,18 @@ public:
     }
     virtual int damage_tome(int damage)
     {
-        hp-=damage;
+        hp -= damage;
         return hp;
     }
-    virtual bool del_me()const
+    virtual bool del_me() const
     {
-        return hp<=0;
+        return hp <= 0;
     }
-    virtual int start()
+    virtual int start(Plant_manager *p_m)
     {
         return INT_TRUE;
     }
-    virtual OBJ_TYPE my_type()const
+    virtual OBJ_TYPE my_type() const
     {
         return o_t;
     }
@@ -34,7 +39,7 @@ public:
 public:
     virtual int connection(Object *connecter)
     {
-        if(this->connector != nullptr)
+        if (this->connector != nullptr)
             return INT_FALSE;
         else
         {
@@ -43,10 +48,8 @@ public:
         }
     }
 
-private:
+protected:
     OBJ_TYPE o_t = 0;
     Position pos;
-    Object*connector = nullptr;
     HEALTH_TYPE hp = 0;
-
 };
